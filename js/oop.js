@@ -59,7 +59,7 @@ let person3 = new Person("P3", 90, "Female", ["I1", "I2", "I3"]);
  
  // STEP 5a and 5b - Using the Object.create() method
  let anotherCar = Object.create(car);
- output2.textContent += `\n${anotherCar.description()}`; // Assuming the element can handle multiline text
+ output2.textContent += `\n${anotherCar.description()}`; 
  
 
 /* STEP 5b: Output to the paragraph anotherCar.brand - you will see that it has retained the properties of the original object. */

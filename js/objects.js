@@ -19,15 +19,15 @@ let person = {
         return `The interests of ${this.name.firstName}, of age ${this.age}, of gender ${this.gender} are ${this.interests.join(", ")}.`;
     },
     1234: "asas",
-    eyeColor: "not specified", // Added based on STEP 9a
-    goodbye: function () { // Added based on STEP 9b
+    eyeColor: "not specified",
+    goodbye: function () { 
         alert(`This is ${this.name.firstName} signing off!`);
     }
 };
 
 // Modifications and additions
 // STEP 8: Set members of an object
-person.name.firstName = "Robert"; // Changing the person's name
+person.name.firstName = "Robert"; 
 
 // STEP 9a: Adding eye color
 person.eyeColor = "green";
@@ -42,7 +42,6 @@ let key = "hairColor";
 let value = "black";
 person[key] = value;
 
-// Additional objects based on STEP 11a and 11b
 let person1 = {
     name: "Person1",
     hello: function () {
@@ -56,9 +55,5 @@ let person2 = {
         alert(`Hello from ${this.name}`);
     }
 };
-
-// Assuming there's a paragraph element with id="output" in your HTML
 const output = document.getElementById('output');
-output.textContent = person.bio(); // Display the bio in the webpage
-
-// The rest of the document script continues as you have outlined
+output.textContent = person.bio(); 
