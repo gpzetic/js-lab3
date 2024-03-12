@@ -32,31 +32,39 @@ function Person(firstName, lastName, age, gender, interests) {
 /* STEP 2b: Use the console to create a couple of different people, using the 'new' keyword, 
 and again invoking the .greeting() method for each person */
 let person3 = new Person("P3", 90, "Female", ["I1", "I2", "I3"]);
-/* STEP 3a: Build the complete constructor for the object Person (comment out the above function first).
- Include name (first and last), age, gender, interests, bio (function), and greeting (function). */
-
-/* STEP 3b: Instantiate a new Person based on the above constructor */
-
-/* STEP 3c: Attempt to access the various properties of person1 using the console. */
-// person1['age']
-// person1.interests[1]
-// person1.bio()
-
-/* STEP 4a: Alternatively, you can use the Object() constructor to create an object. eg. car*/
-let car = new Object();
-car.brand = "Honda";
-car.model = "Civic";
-
-/* STEP 4b: Once 'car' is created, add various properties and methods… */
-
-/* STEP 4c: Change some of the properties of 'car' in the console, then invoke the car.fun() function */
-
-/* STEP 5a: Yet another approach is to use the create() method. 
-Let's see how the above car object can be used to create another object */
-let anotherCar = Object.create(car);
-console.log(anotherCar.brand);
+ // STEP 2a and 2b - Rewrite using constructor function
+ function Person(firstName, lastName, age, gender, interests) {
+     this.name = {
+         firstName: firstName,
+         lastName: lastName,
+     };
+     this.age = age;
+     this.gender = gender;
+     this.interests = interests;
+     this.greeting = function() {
+         return `Hello, this is ${this.name.firstName}`;
+     };
+     this.bio = function() {
+         return `${this.name.firstName} ${this.name.lastName} is ${this.age} years old. They like ${this.interests.join(', ')}.`;
+     };
+ }
+ output2.textContent = person3.greeting();
+ let car = new Object();
+ car.brand = "Nissan";
+ car.model = "Ultima";
+ car.year = 2020;
+ car.description = function() {
+     return `This is a ${this.year} ${this.brand} ${this.model}.`;
+ };
+ 
+ // STEP 5a and 5b - Using the Object.create() method
+ let anotherCar = Object.create(car);
+ output2.textContent += `\n${anotherCar.description()}`; // Assuming the element can handle multiline text
+ 
 
 /* STEP 5b: Output to the paragraph anotherCar.brand - you will see that it has retained the properties of the original object. */
+console.log(anotherCar.brand);
+
 
 // That's it! Now on to Lab 3...
 // Create a JavaScript function that permits the creation of a hamburger object
@@ -72,5 +80,31 @@ console.log(anotherCar.brand);
 */
 // add some extra if you want
 // Make sure that the function allows for the output of a sentence that describes the hamburger, too
+ 
+function createHamburger(options) {
+    this.bunType = options.bunType;
+    this.garnishes = options.garnishes;
+    this.cheeses = options.cheeses;
+    this.sauces = options.sauces;
+    this.meat = options.meat;
+    this.pattyCount = options.pattyCount;
+    this.extras = options.extras;
 
+    this.output = function() {
+        return `Your hamburger has a ${this.bunType} bun, ${this.pattyCount} ${this.meat} patties, ${this.cheeses.join(', ')} cheese, garnished with ${this.garnishes.join(', ')}, topped with ${this.sauces.join(', ')}, and includes ${this.extras.join(', ')}.`;
+    };
+}
+
+let myHamburger = new createHamburger({
+    bunType: "sesame",
+    garnishes: ["lettuce", "tomato"],
+    cheeses: ["cheddar", "gouda"],
+    sauces: ["mayo", "ketchup"],
+    meat: "beef",
+    pattyCount: 2,
+    extras: ["pickles", "onions", "hot peppers"],
+});
+
+console.log(myHamburger.output());
+output2.innerHTML += "<br><br>" + myHamburger.output();
 // This page inspired by and adapted from https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_JS
